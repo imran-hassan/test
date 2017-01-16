@@ -44,9 +44,15 @@ Describe pros and cons of alternatives considered.
 
 + Add a new XSD element called “bgp-origin” in the type BgpSessionAttributes. This is the data type that is associated with bgp peering sessions.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_a.png "Fig. 3.2.1")
+
 + Execute the command **scons controller/src/api-lib**. This command builds the Python client api library that we will use later on to set the new configuration parameter. You can poke around at the generated code: **grep bgp-origin build/debug/api-lib/vnc_api/gen/**
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
+
 + Add bpp_origin in bgp_sess_attrs in **controller/src/config/utils/provision_bgp.py**.
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_c.png "Fig. 3.2.3")
 
 ##3.3 User workflow impact
 
@@ -72,34 +78,83 @@ Following changes are implemented in Controller to define a new origin field.
 ####4.1.1.1 BGP Config:
 + **bgp_config.h:** In **bgp_config.h**, new attribute **bgp_origin** is added in **BgpNeighborConfig** class. For manipulation of this attribute, we have added a **getter/setter** in the same class.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.1_a.png "Fig. 4.1.1.1.1")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.1_b.png "Fig. 4.1.1.1.2")
+
 + **bgp_config.cc:** In **bgp_config.cc**, we call the setter method for **bgp_origin** defined in header file. The coding convention was followed and **bgp_origin** was added in **CopyValues** method and the same was done for **CompareTo** method.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.1_c.png "Fig. 4.1.1.1.3")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.1_d.png "Fig. 4.1.1.1.4")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.1_e.png "Fig. 4.1.1.1.5")
 
 ####4.1.1.2 BGP Peer:
 
 + In **bgp_peer.h** the new attribute **bgp_origin** is added in **BgpPeer** class.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_a.png "Fig. 4.1.1.2.1")
+
 + In the file **bgp_peer.cc**, the **RibExportPolicy** in the **BuildRibExportPolicy** methodreturns an additional argument which is **bgp_origin**.
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_b.png "Fig. 4.1.1.2.2")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_c.png "Fig. 4.1.1.2.3")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_d.png "Fig. 4.1.1.2.4")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_e.png "Fig. 4.1.1.2.5")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_f.png "Fig. 4.1.1.2.6")
 
 ####4.1.1.3 In BGPRibOut:
 
 + In **bgpRibout.h**, bgp origin function is defined which returns a constant value.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.3_a.png "Fig. 4.1.1.3.1")
+
 + In **bgp_ribout.cc**, changes are made in the if statements of RibOut constructor.
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.3_b.png "Fig. 4.1.1.3.2")
 
 ####4.1.1.4 BgpRibOutPolicy:
 
 + In **bgp_rib_policy.h**, a new integer bgp origin is defined. 
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_a.png "Fig. 4.1.1.4.1")
+
 + **bgp_rib_policy.cc**: In the structure **RibExportPolicy**, we add the attribute **bgp_origin** so that origin attribute is advertised to all BGP Peers. In the structure **RibExportPolicy**, the attribute **bgp_origin** is set in the constructor method. As there are total 4 constructors for the structure **RibExportPolicy**, **bgp_origin** is set for the rest of 3 constructors. 
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_b.png "Fig. 4.1.1.4.2")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_c.png "Fig. 4.1.1.4.3")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_d.png "Fig. 4.1.1.4.4")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_e.png "Fig. 4.1.1.4.5")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_f.png "Fig. 4.1.1.4.6")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_g.png "Fig. 4.1.1.4.7")
 
 ####4.1.1.5 BgpShowConfig:
 
 + **bgp_show_config.cc**: In the **FillBgpNeighborConfigInfo** method, we set the **bgp_origin** for **ShowBgpNeighborConfig** with the value of **BgpNeighborConfig bgp_origin**.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.5_a.png "Fig. 4.1.1.5.1")
+
 + **bgp_peer.sandesh**: Declare bgp_origin in sandesh structure
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.6_a.png "Fig. 4.1.1.6.1")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.6_b.png "Fig. 4.1.1.6.2")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.6_c.png "Fig. 4.1.1.6.3")
+
 + In **bgp_config_ifmap.cc**, **bgp_origin** attribute is set. 
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.7_a.png "Fig. 4.1.1.7.1")
 
 ###4.1.2 Core files for BgpAttrOrigin:
 
@@ -107,7 +162,15 @@ Following changes are implemented in Controller to define a new origin field.
 
 + **bgp_attr_base.h:** The BgpAttribute class defines an enumeration of Code which contain the BGP Attributes.  Origin being a part of BGP is assigned value 1.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.1_a.png "Fig. 4.1.2.1.1")
+
 + In **bgp_attr.h**, the structure BgpAttr inherits BgpAttribute. This structure contains methods and attributes for manipulating Origin.
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.2_a.png "Fig. 4.1.2.1.1")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.2_b.png "Fig. 4.1.2.2.2")
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.2_c.png "Fig. 4.1.2.2.3")
 
 + The class BgpAttr contains a getter/setter for Origin.
 
@@ -115,15 +178,26 @@ Following changes are implemented in Controller to define a new origin field.
 
 + The declared methods in bgp_attr.h are implemented. A total of 3 different code flows are initiated within Contrail to set RouteOrigin attribute. **(1)** BGP Message Builder **(2)** Routing Instance **(3)** BGP XMPP RTarget Manager
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.2_d.png "Fig. 4.1.2.2.4")
+
 ####4.1.2.3 BgpXmppRtargetManager:
 + **bgp_xmpp_rtarget_manager.cc**: In the GetRouteTargetRouteAttr method, the origin is set with a initiated a value of IGP (defined in enum OriginType in struct BgpAttrOrigin).
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.3_a.png "Fig. 4.1.2.3.1")
 
 ####4.1.2.4 RoutingInstance:
 + **routing_instance.cc**: In RoutingInstance class, the method AddRTargetRoute sets the origin with a value of IGP.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.4_a.png "Fig. 4.1.2.4.1")
+
 ####4.1.2.5 BgpMessageBuilder:
 + **bgp_message_builder.h**: In class BgpMessage, new private constants are defined. 
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.5_a.png "Fig. 4.1.2.5.1")
+
 + **bgp_message_builder.cc**: In BgpMessageBuilder class, the **StartReach** method has **RibOutAttr** type reference in the parameters. A BgpAttr type pointer is referenced to RibOutAttr attribute. 
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.2.5_b.png "Fig. 4.1.2.5.2")
 
 ###4.1.3 Checking condition for overriding Bgp Origin value
 
@@ -133,9 +207,13 @@ On creating BGPaas, we check if session.bgp_origin is not equal to 3. Then we ov
 
 Check if value of bgp_origin is set by the user from 0 to 2. Override in this case. Otherwise go with the default behavior.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.3.1_a.png "Fig. 4.1.3.1.1")
+
 ####4.1.3.2 bgp_xmpp_rtarget_manager.cc:
 
 In this cc file, the override logic for bgp_origin is implemented.
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.3.2_a.png "Fig. 4.1.3.2.1")
 
 #5. Performance and scaling impact
 ##5.1 API and control plane
