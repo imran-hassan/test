@@ -54,7 +54,7 @@ Contrail GUI allows the user define a new route origin with multiple options. Us
 
 ##3.4 UI changes
 
-Details in contrail-web-controller
+Details in contrail-web-controller repo README.md
 
 ##3.5 Notification impact
 
@@ -65,7 +65,7 @@ There were no changes made in logs, UVEs or alarms.
 #4. Implementation
 ##4.1  Work items
 
-It has 4 modules. The first module involves the changes in configuration files mentioned in section 3.2 above. The second module involves the changes in UI files mentioned in contrail-web-controller. The backend changes are mentioned below.
+It has 4 modules. The first module involves the changes in configuration files mentioned in section 3.2 above. The second module involves the changes in UI files mentioned in contrail-web-controller repo README.md. The backend changes are mentioned below.
 
 ###4.1.1 Controller                                                                                                                 
 Following changes are implemented in Controller to define a new origin field.                                 
