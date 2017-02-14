@@ -42,11 +42,15 @@ Describe pros and cons of alternatives considered.
 
 **Changes in bgp_schema.xsd:**
 
-+ Add a new XSD element called “bgp-origin” in the type BgpSessionAttributes. This is the data type that is associated with bgp peering sessions.
++ Add two new XSD element called “bgp-origin” and “origin-override” in the type BgpSessionAttributes. These are the data type that are associated with bgp peering sessions. Declare enumeration of string type for “bgp-origin”
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_a.png "Fig. 3.2.1")
 
 + Execute the command **scons controller/src/api-lib**. This command builds the Python client api library that we will use later on to set the new configuration parameter. You can poke around at the generated code: **grep bgp-origin build/debug/api-lib/vnc_api/gen/**
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
+
++ **grep origin-override build/debug/api-lib/vnc_api/gen/**
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
 
