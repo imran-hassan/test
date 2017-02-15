@@ -98,7 +98,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_a.png "Fig. 4.1.1.2.1")
 
-+ In the file **bgp_peer.cc**, the **RibExportPolicy** in the **BuildRibExportPolicy** methodreturns an additional argument which is **bgp_origin**.
++ In the file **bgp_peer.cc**, add **bgp_origin** and **origin_override**.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_c.png "Fig. 4.1.1.2.2")
 
@@ -114,7 +114,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.3_a.png "Fig. 4.1.1.3.1")
 
-+ **To Be change**
++ **Enum of bgp_origin**
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.3_b.png "Fig. 4.1.1.3.2")
 
@@ -124,7 +124,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_a.png "Fig. 4.1.1.4.1")
 
-+ **bgp_rib_policy.cc**: In the structure **RibExportPolicy**, we add the attribute **bgp_origin** so that origin attribute is advertised to all BGP Peers. In the structure **RibExportPolicy**, the attribute **bgp_origin** is set in the constructor method. As there are total 4 constructors for the structure **RibExportPolicy**, **bgp_origin** is set for the rest of 3 constructors. 
++ **bgp_rib_policy.cc**: In this file we write setter of **bgp_origin** and  **origin_override** 
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_b.png "Fig. 4.1.1.4.2")
 
