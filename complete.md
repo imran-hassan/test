@@ -60,7 +60,7 @@ Describe pros and cons of alternatives considered.
 
 ##3.3 User workflow impact
 
-Contrail GUI allows the user define a new route origin with multiple options. User can click advanced options in Create to view the BGP Origin field. It has four options: IGP, EGP, INCOMPLETE or NONE to be selected by the user.
+Contrail GUI allows the user define a new route origin with multiple options. User can click advanced options in Create to view the BGP Origin field. It has three options: IGP, EGP or INCOMPLETE to be selected by the user. If user want to override the value, user check the Origin override check box.
 
 ##3.4 UI changes
 
