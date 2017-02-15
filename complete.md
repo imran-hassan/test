@@ -166,7 +166,7 @@ There are no changes in scalability of API and Control Plane.
 We do not expect any change to the forwarding performance.
 
 #6. Upgrade
-The BGP origin field is a new field and hence does not have any upgrade impact.
+The BGP origin and Origin Override fields are both new field and hence does not have any upgrade impact.
 
 #7. Deprecations
 There are no deprecations when this change is made.
@@ -193,7 +193,7 @@ Flow Test Steps:
 These tests were completed successfully.
 
 #10. Documentation Impact
-BGP origin field details have to be added in user documentation.
+BGP origin and Origin Override fields detail have to be added in user documentation.
 
 #11. References
 [bgp_design](http://juniper.github.io/contrail-vnc/bgp_design.html)
