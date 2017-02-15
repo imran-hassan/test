@@ -100,6 +100,8 @@ Following changes are implemented in Controller to define a new origin field.
 
 + In the file **bgp_peer.cc**, add **bgp_origin** and **origin_override**.
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_g.png "Fig. 4.1.1.2.2")
+
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_c.png "Fig. 4.1.1.2.2")
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_d.png "Fig. 4.1.1.2.3")
