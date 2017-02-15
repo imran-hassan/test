@@ -46,17 +46,15 @@ Describe pros and cons of alternatives considered.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_a.png "Fig. 3.2.1")
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
+
 + Execute the command **scons controller/src/api-lib**. This command builds the Python client api library that we will use later on to set the new configuration parameter. You can poke around at the generated code: **grep bgp-origin build/debug/api-lib/vnc_api/gen/**
 
-![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_c.png "Fig. 3.2.3")
 
 + **grep origin-override build/debug/api-lib/vnc_api/gen/**
 
-![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
-
-+ Add bpp_origin in bgp_sess_attrs in **controller/src/config/utils/provision_bgp.py**.
-
-![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_c.png "Fig. 3.2.3")
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_d.png "Fig. 3.2.4")
 
 ##3.3 User workflow impact
 
