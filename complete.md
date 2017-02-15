@@ -46,17 +46,15 @@ Describe pros and cons of alternatives considered.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_a.png "Fig. 3.2.1")
 
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
+
 + Execute the command **scons controller/src/api-lib**. This command builds the Python client api library that we will use later on to set the new configuration parameter. You can poke around at the generated code: **grep bgp-origin build/debug/api-lib/vnc_api/gen/**
 
-![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_c.png "Fig. 3.2.3")
 
 + **grep origin-override build/debug/api-lib/vnc_api/gen/**
 
-![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_b.png "Fig. 3.2.2")
-
-+ Add bpp_origin in bgp_sess_attrs in **controller/src/config/utils/provision_bgp.py**.
-
-![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_c.png "Fig. 3.2.3")
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_3.2_d.png "Fig. 3.2.4")
 
 ##3.3 User workflow impact
 
@@ -100,7 +98,9 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_a.png "Fig. 4.1.1.2.1")
 
-+ In the file **bgp_peer.cc**, the **RibExportPolicy** in the **BuildRibExportPolicy** methodreturns an additional argument which is **bgp_origin**.
++ In the file **bgp_peer.cc**, add **bgp_origin** and **origin_override**.
+
+![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_g.png "Fig. 4.1.1.2.2")
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_c.png "Fig. 4.1.1.2.2")
 
@@ -116,7 +116,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.3_a.png "Fig. 4.1.1.3.1")
 
-+ **To Be change**
++ **Enum of bgp_origin**
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.3_b.png "Fig. 4.1.1.3.2")
 
@@ -126,7 +126,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_a.png "Fig. 4.1.1.4.1")
 
-+ **bgp_rib_policy.cc**: In the structure **RibExportPolicy**, we add the attribute **bgp_origin** so that origin attribute is advertised to all BGP Peers. In the structure **RibExportPolicy**, the attribute **bgp_origin** is set in the constructor method. As there are total 4 constructors for the structure **RibExportPolicy**, **bgp_origin** is set for the rest of 3 constructors. 
++ **bgp_rib_policy.cc**: In this file we write setter of **bgp_origin** and  **origin_override** 
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_b.png "Fig. 4.1.1.4.2")
 
@@ -168,7 +168,7 @@ There are no changes in scalability of API and Control Plane.
 We do not expect any change to the forwarding performance.
 
 #6. Upgrade
-The BGP origin field is a new field and hence does not have any upgrade impact.
+The BGP origin and Origin Override fields are both new field and hence does not have any upgrade impact.
 
 #7. Deprecations
 There are no deprecations when this change is made.
@@ -195,7 +195,7 @@ Flow Test Steps:
 These tests were completed successfully.
 
 #10. Documentation Impact
-BGP origin field details have to be added in user documentation.
+BGP origin and Origin Override fields detail have to be added in user documentation.
 
 #11. References
 [bgp_design](http://juniper.github.io/contrail-vnc/bgp_design.html)
