@@ -58,7 +58,7 @@ Describe pros and cons of alternatives considered.
 
 ##3.3 User workflow impact
 
-Contrail GUI allows the user define a new route origin with multiple options. User can click advanced options in Create to view the BGP Origin field. It has three options: IGP, EGP or INCOMPLETE to be selected by the user. If user want to override the value, user check the Origin override check box.
+Contrail GUI allows the user define a new route origin with multiple options. User can click advanced options in "Create" to view the BGP Origin Field. It has three options: IGP, EGP or INCOMPLETE to be selected by the user. If user wants to override the value, user can select/check the "Origin Override" check box.
 
 ##3.4 UI changes
 
@@ -73,7 +73,7 @@ There were no changes made in logs, UVEs or alarms.
 #4. Implementation
 ##4.1  Work items
 
-It has 4 modules. The first module involves the changes in configuration files mentioned in section 3.2 above. The second module involves the changes in UI files mentioned in contrail-web-controller repo README.md. The backend changes are mentioned below.
+It has 4 modules. The first module involves the changes in configuration files mentioned in section 3.2 above. The second module involves the changes in UI files mentioned in contrail-web-controller repo README.md. The backend changes have been mentioned below.
 
 ###4.1.1 Controller                                                                                                                 
 Following changes are implemented in Controller to define a new origin field.
@@ -94,7 +94,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ####4.1.1.2 BGP Peer:
 
-+ In **bgp_peer.h** the new attributes **bgp_origin** and **origin_override** are added in **BgpPeer** class.
++ In **bgp_peer.h**, the new attributes **bgp_origin** and **origin_override** are added in **BgpPeer** class.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.2_a.png "Fig. 4.1.1.2.1")
 
@@ -126,7 +126,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_a.png "Fig. 4.1.1.4.1")
 
-+ **bgp_rib_policy.cc**: In this file we write setter of **bgp_origin** and  **origin_override** 
++ **bgp_rib_policy.cc**: In this file we write setter of **bgp_origin** and  **origin_override**.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.4_b.png "Fig. 4.1.1.4.2")
 
@@ -138,7 +138,7 @@ Following changes are implemented in Controller to define a new origin field.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.5_a.png "Fig. 4.1.1.5.1")
 
-+ **bgp_peer.sandesh**: Declare bgp_origin and origin_override in sandesh structure
++ **bgp_peer.sandesh**: Declare bgp_origin and origin_override in sandesh structure.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.1.6_a.png "Fig. 4.1.1.6.1")
 
@@ -156,7 +156,7 @@ On creating BGPaas, we check if session.origin_override is true. Then we overrid
 
 ####4.1.3.1 bgp_message_builder.cc:
 
-Check if value of origin_override is set by the user to true. Override in this case. Otherwise go with the default behavior.
+Check if value of origin_override is set by the user to "true". Override in this case. Otherwise go with the default behavior.
 
 ![alt text](https://github.com/imran-hassan/test/blob/master/images/sec_4.1.3.1_a.png "Fig. 4.1.3.1.1")
 
@@ -168,7 +168,7 @@ There are no changes in scalability of API and Control Plane.
 We do not expect any change to the forwarding performance.
 
 #6. Upgrade
-The BGP origin and Origin Override fields are both new field and hence does not have any upgrade impact.
+Both BGP Origin and Origin Override are new fields and hence do not have any upgrade impact.
 
 #7. Deprecations
 There are no deprecations when this change is made.
@@ -181,7 +181,7 @@ There are no dependencies for this feature.
 
 IFMAP unit test: Check whether value passed from front end has been received on IFMAP server.
 
-BGPaaS: Check that the value of BGP origin received can be overridden.
+BGPaaS: Check that the value of BGP Origin received can be overridden.
 
 
 ##9.2 Dev test
@@ -192,10 +192,10 @@ Flow Test Steps:
 
 + Check that when BGPaaS is created, default (original) value is overridden by user-defined value.
 
-These tests were completed successfully.
+These tests have been completed successfully.
 
 #10. Documentation Impact
-BGP origin and Origin Override fields detail have to be added in user documentation.
+The details of BGP Origin and Origin Override fields have to be added in the user documentation.
 
 #11. References
 [bgp_design](http://juniper.github.io/contrail-vnc/bgp_design.html)
